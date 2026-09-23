@@ -169,3 +169,22 @@ spanタグ→inputタグにする
 ※未完了タスクのみ変更可能にする
 
 参考：https://zenn.dev/sprout2000/books/76a279bb90c3f3/viewer/chapter10
+
+
+7. リロードでデータが消えないようにする
+ローカルストレージに保存
+
+フック`useEffect`を利用
+→状態に変化があったときに、追加処理を実装できる
+
+今回の場合
+```
+useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+```
+todosの状態が変わった時
+→データをJSONでローカルストレージに保存
+
+画面描画時にローカルストレージを確認
+→データが存在する場合表示する
