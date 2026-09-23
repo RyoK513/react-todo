@@ -28,19 +28,22 @@ function App() {
   // タスク状態切替用関数
   const changeStatus = (id) => {
 
-    setTodos(prevTodos => 
-      prevTodos.map(todo => 
+    const newTodos = todos.map(todo => 
         todo.id === id
         ? { ...todo, completed: !todo.completed }
         : todo
-      )
-    );
+      );
+    setTodos (newTodos);
   }
 
   // タスク削除用関数
   const deleteTask = (id) => {
 
     // 実装する
+    console.log(id)
+    const newTodos = todos.filter((todo) => todo.id !== id);
+    
+    setTodos (newTodos);
   }
 
   // このreturn()の中に画面に表示したい内容を書いていく
@@ -73,7 +76,7 @@ function App() {
               <span onClick={() => changeStatus(todo.id)} style={{ cursor: 'pointer' }}>
                 {todo.text}
               </span>
-              <button>削除</button>
+              <button onClick={() => deleteTask(todo.id)}>削除</button>
             </li>
         ))}
       </ul>
@@ -89,7 +92,7 @@ function App() {
               <span onClick={() => changeStatus(todo.id)} style={{ cursor: 'pointer' }}>
                 {todo.text}
               </span>
-              <button>削除</button>
+              <button onClick={() => deleteTask(todo.id)}>削除</button>
             </li>
         ))}
       </ul>
