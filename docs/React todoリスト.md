@@ -31,3 +31,16 @@ Oxlintを選択
 > http://localhost:5173/にアクセス
 
 サンプルコードを削除
+
+> import React from 'react';
+Reactを使うための記述
+
+> export default App;
+Appコンポーネントを他のファイルから読み込めるように外部へ公開するための記述
+1つの主要な値や関数をデフォルトとしてエクスポート
+
+1. UIを作成
+JSX：JavaScriptのコード内にHTMLのようなタグ形式でUIを直感的に記述できるようにするJavaScriptの拡張構文
+
+- 新規タスク追加フォーム（追加ボタン）
+- タスク表示エリア（完了・未完了）
