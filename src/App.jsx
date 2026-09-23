@@ -5,13 +5,26 @@ import './App.css';
 function App() {
   // このreturn()の中に画面に表示したい内容を書いていく
   // タスクの一覧を管理するstateを定義
-  const [todos, setTodos] = useState([
-    { id: 1, text: '未完了タスク', completed: false },
-    { id: 2, text: '完了タスク', completed: true },
-  ]);
+  const [todos, setTodos] = useState([]);
 
   // フォームの入力値を管理するstateを定義
   const [input, setInput] = useState('');
+  // タスク追加用関数
+  const addTodo = (e) => {
+    e.preventDefault();
+
+    console.log(input);
+    if (!input ) {
+      return;
+    }
+
+    setTodos([...todos, { 
+      id: Date.now(),
+      text: input,
+      completed: false
+    }]);
+    setInput(''); 
+  }
 
   return (
     <div className="App">
@@ -28,7 +41,7 @@ function App() {
         // 入力のタイミングでsetInputを呼び出し
         onChange={(e) => setInput(e.target.value)}
         />
-        <button type='submit'>追加</button>
+        <button type='submit' onClick={addTodo}>追加</button>
       </form>
 
       {/* タスク一覧 */}
