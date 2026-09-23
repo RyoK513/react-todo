@@ -1,8 +1,15 @@
 import React from 'react';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
   // このreturn()の中に画面に表示したい内容を書いていく
+  // タスクの一覧を管理するstateを定義
+  const [todos, setTodos] = useState([
+    { id: 1, text: '未完了タスク', completed: false },
+    { id: 2, text: '完了タスク', completed: true },
+  ]);
+
   return (
     <div className="App">
       <h1>ToDoアプリ</h1>
@@ -18,13 +25,21 @@ function App() {
       <h2>未完了タスク</h2>
       <ul>
         {/* 未完了タスク一覧を表示する */}
-        <li>サンプルToDo1</li>
+        {todos
+          .filter((todo) => !todo.completed)
+          .map((todo) => (
+            <li key={todo.id}>{todo.text}</li>
+        ))}
       </ul>
 
       <h2>完了したタスク</h2>
       <ul>
         {/* 完了したタスク一覧を表示する */}
-        <li>サンプルToDo（完了）</li>
+        {todos
+          .filter((todo) => todo.completed)
+          .map((todo) => (
+            <li key={todo.id}>{todo.text}</li>
+        ))}
       </ul>
     </div>
   );

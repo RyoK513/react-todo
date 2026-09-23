@@ -54,3 +54,37 @@ index.cssを調整
 index.html→/src/main.jsx→import './index.css'で読み込まれる
 
 ※今回のメインはcssでは無いのでClaudeで生成する
+
+3. タスクの一覧を表示する
+useStateを利用
+→Reactの関数コンポーネント内でデータの状態を保持し・更新するためのReact Hooksの機能
+→React Hooks（リアクトフック）：状態管理などのReactの機能を、クラスを書かずに使えるようになる機能
+
+```
+import { useState } from 'react';
+const [todos, setTodos] = useState([...
+```
+const [現在の値, 値を更新する関数] = useState(初期値)
+
+1つ目 todos … 現在のstateの値（今回は上のToDo配列そのもの）
+2つ目 setTodos … todosを更新するための専用関数
+
+- 未完了・完了のステータスによって表示領域を変更する方法
+未完了・完了それぞれの<ul>で、todos配列をfilter()で絞り込んでからmap()する
+
+```
+{todos.map((todo) => (
+  <li key={todo.id}>{todo.text}</li>
+))}
+```
+↓
+```
+{todos
+    .filter(
+        (todo) => !todo.completed)
+        .map((todo) => (
+            <li key={todo.id}>{todo.text}</li>
+        )
+    )
+}
+```
