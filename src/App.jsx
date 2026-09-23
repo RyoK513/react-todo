@@ -37,6 +37,12 @@ function App() {
     );
   }
 
+  // タスク削除用関数
+  const deleteTask = (id) => {
+
+    // 実装する
+  }
+
   // このreturn()の中に画面に表示したい内容を書いていく
   return (
     <div className="App">
@@ -63,7 +69,12 @@ function App() {
         {todos
           .filter((todo) => !todo.completed)
           .map((todo) => (
-            <li key={todo.id} onClick={() => changeStatus(todo.id)}>{todo.text}</li>
+            <li key={todo.id}>
+              <span onClick={() => changeStatus(todo.id)} style={{ cursor: 'pointer' }}>
+                {todo.text}
+              </span>
+              <button>削除</button>
+            </li>
         ))}
       </ul>
 
@@ -73,7 +84,13 @@ function App() {
         {todos
           .filter((todo) => todo.completed)
           .map((todo) => (
-            <li key={todo.id} onClick={() => changeStatus(todo.id)}>{todo.text}</li>
+            // <li key={todo.id} onClick={() => changeStatus(todo.id)}>{todo.text}</li>
+            <li key={todo.id}>
+              <span onClick={() => changeStatus(todo.id)} style={{ cursor: 'pointer' }}>
+                {todo.text}
+              </span>
+              <button>削除</button>
+            </li>
         ))}
       </ul>
     </div>

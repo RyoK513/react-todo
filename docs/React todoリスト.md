@@ -13,8 +13,9 @@
 - 保存機能
 - タスク編集
 
-進める順番の参考
+進める順番の参考（コードはなるべく見ない）
 https://qiita.com/yamapiiii/items/b14a7495076306cd7d5e
+https://qiita.com/teru_dev/items/e43d004ada1666ed4241
 
 ---------------------------------------
 
@@ -150,3 +151,7 @@ if (tergetTask.completed) {
 メモ：targetTask.completed = !targetTask.completed;のように記載できるらしい
 
 でタスクの完了状態をクリックで切り替えれるようになった
+
+5. タスク削除
+削除ボタンを追加、押下時に削除用関数を呼び出す
+→IDを渡し対象のタスクを削除する
