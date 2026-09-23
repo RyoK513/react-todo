@@ -1,0 +1,257 @@
+/* ==========================================================================
+   グローバルスタイル / デザインシステム
+   ToDoアプリ全体で使うカラー・余白・角丸などをカスタムプロパティで定義
+   ========================================================================== */
+:root {
+  color-scheme: light;
+
+  /* カラーパレット（白ベースの明るい配色） */
+  --color-bg-start: #ffffff;
+  --color-bg-end: #f7f8fa;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f9fafb;
+  --color-border: #e9eaee;
+  --color-text: #1e1b2e;
+  --color-text-muted: #8b8fa3;
+  --color-primary: #6366f1;
+  --color-primary-hover: #4f46e5;
+  --color-primary-soft: #eef2ff;
+  --color-success: #22c55e;
+  --color-danger: #ef4444;
+
+  /* シャドウ・角丸・余白 */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.08);
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --transition-fast: 150ms ease;
+  --transition-base: 220ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   リセット
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+input {
+  font: inherit;
+}
+
+/* ==========================================================================
+   ベースレイアウト
+   画面全体をグラデーション背景にし、中央にカードを配置する
+   ========================================================================== */
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 48px 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans',
+    'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+  color: var(--color-text);
+  background: linear-gradient(180deg, var(--color-bg-start), var(--color-bg-end));
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   アプリ全体のカード
+   ========================================================================== */
+.App {
+  width: 100%;
+  max-width: 520px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 36px 32px 40px;
+}
+
+.App h1 {
+  margin: 0 0 28px;
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-align: center;
+  background: linear-gradient(135deg, var(--color-primary), #a855f7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.App h2 {
+  margin: 32px 0 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.App h2:first-of-type {
+  margin-top: 8px;
+}
+
+/* ==========================================================================
+   タスク追加フォーム
+   ========================================================================== */
+.App form {
+  display: flex;
+  gap: 10px;
+}
+
+.App form input[type='text'] {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-muted);
+  color: var(--color-text);
+  outline: none;
+  transition: border-color var(--transition-fast),
+    box-shadow var(--transition-fast), background var(--transition-fast);
+}
+
+.App form input[type='text']::placeholder {
+  color: var(--color-text-muted);
+}
+
+.App form input[type='text']:focus {
+  border-color: var(--color-primary);
+  background: var(--color-surface);
+  box-shadow: 0 0 0 4px var(--color-primary-soft);
+}
+
+.App form button[type='submit'] {
+  padding: 12px 22px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: background var(--transition-fast),
+    transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.App form button[type='submit']:hover {
+  background: var(--color-primary-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.App form button[type='submit']:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* ==========================================================================
+   タスク一覧（共通）
+   ========================================================================== */
+.App ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.App ul li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--color-surface-muted);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.App ul li:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+  border-color: var(--color-primary);
+}
+
+/* 未完了タスク：先頭にドットのアクセントを付与 */
+.App ul:first-of-type li::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+
+/* 完了タスク：チェックマーク + 打ち消し線でメリハリをつける */
+.App ul:last-of-type li {
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+  background: transparent;
+}
+
+.App ul:last-of-type li::before {
+  content: '✓';
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--color-success);
+  color: #fff;
+  font-size: 0.7rem;
+  text-decoration: none;
+}
+
+/* リストが空のとき用（li が無い場合の余白調整） */
+.App ul:empty {
+  display: none;
+}
+
+/* ==========================================================================
+   レスポンシブ対応
+   ========================================================================== */
+@media (max-width: 480px) {
+  body {
+    padding: 24px 12px;
+  }
+
+  .App {
+    padding: 28px 20px 32px;
+    border-radius: var(--radius-md);
+  }
+
+  .App form {
+    flex-direction: column;
+  }
+
+  .App form button[type='submit'] {
+    width: 100%;
+  }
+}
