@@ -3,17 +3,16 @@ import { useState } from 'react';
 import './App.css';
 
 function App() {
-  // このreturn()の中に画面に表示したい内容を書いていく
   // タスクの一覧を管理するstateを定義
   const [todos, setTodos] = useState([]);
 
   // フォームの入力値を管理するstateを定義
   const [input, setInput] = useState('');
+  
   // タスク追加用関数
   const addTodo = (e) => {
     e.preventDefault();
 
-    console.log(input);
     if (!input ) {
       return;
     }
@@ -26,6 +25,12 @@ function App() {
     setInput(''); 
   }
 
+  // タスク状態切替用関数
+  const changeStatus = (e) => {
+    console.log(e);
+  }
+
+  // このreturn()の中に画面に表示したい内容を書いていく
   return (
     <div className="App">
       <h1>ToDoアプリ</h1>
@@ -51,7 +56,7 @@ function App() {
         {todos
           .filter((todo) => !todo.completed)
           .map((todo) => (
-            <li key={todo.id}>{todo.text}</li>
+            <li key={todo.id} onClick={() => changeStatus(todo.id)}>{todo.text}</li>
         ))}
       </ul>
 
@@ -61,7 +66,7 @@ function App() {
         {todos
           .filter((todo) => todo.completed)
           .map((todo) => (
-            <li key={todo.id}>{todo.text}</li>
+            <li key={todo.id} onClick={() => changeStatus(todo.id)}>{todo.text}</li>
         ))}
       </ul>
     </div>
