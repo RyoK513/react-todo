@@ -10,6 +10,9 @@ function App() {
     { id: 2, text: '完了タスク', completed: true },
   ]);
 
+  // フォームの入力値を管理するstateを定義
+  const [input, setInput] = useState('');
+
   return (
     <div className="App">
       <h1>ToDoアプリ</h1>
@@ -17,7 +20,14 @@ function App() {
 
       {/* 新規タスク追加用フォーム */}
       <form>
-        <input type="text" placeholder='ToDo' />
+        <input
+        id='todo-input'
+        type="text"
+        placeholder='ToDo' 
+        value={input}
+        // 入力のタイミングでsetInputを呼び出し
+        onChange={(e) => setInput(e.target.value)}
+        />
         <button type='submit'>追加</button>
       </form>
 

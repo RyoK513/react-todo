@@ -88,3 +88,13 @@ const [現在の値, 値を更新する関数] = useState(初期値)
     )
 }
 ```
+
+3. タスクを追加できるようにする
+初期値なしのstateを定義（入力値の状態管理用）
+`const [input, setInput] = useState('');`
+input stateの値を入力欄に表示
+入力エリアに入力された内容をinput stateに反映→setInput()
+↓反映タイミング
+onChange()イベントを利用
+→フォーム内のエレメント（要素）の内容が変更された時に起こイベント処理
+参考：https://qiita.com/kuutarou/items/a6f61d1bbc50378034af
