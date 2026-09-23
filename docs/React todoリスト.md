@@ -159,3 +159,13 @@ if (tergetTask.completed) {
 filterメソッドを使って指定したID以外の要素だけを残した新しい配列を作成し、setTodos()に渡す
 
 →こっちの方がわかりやすいのでchangeStatus()も同じ記述にしておく
+
+6. タスク編集
+各 todo を入力フォーム化する
+spanタグ→inputタグにする
+
+編集用関数を作成→クリック時に呼び出す
+
+※未完了タスクのみ変更可能にする
+
+参考：https://zenn.dev/sprout2000/books/76a279bb90c3f3/viewer/chapter10

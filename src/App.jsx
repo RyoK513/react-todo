@@ -39,12 +39,18 @@ function App() {
   // タスク削除用関数
   const deleteTask = (id) => {
 
-    // 実装する
-    console.log(id)
     const newTodos = todos.filter((todo) => todo.id !== id);
     
     setTodos (newTodos);
   }
+
+  // タスク編集用関数
+  const changeTask = (id, newText) => {
+    const newTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, text: newText } : todo
+    );
+    setTodos(newTodos);
+  };
 
   // このreturn()の中に画面に表示したい内容を書いていく
   return (
@@ -73,10 +79,17 @@ function App() {
           .filter((todo) => !todo.completed)
           .map((todo) => (
             <li key={todo.id}>
-              <span onClick={() => changeStatus(todo.id)} style={{ cursor: 'pointer' }}>
+              {/* <span onClick={() => changeStatus(todo.id)} style={{ cursor: 'pointer' }}>
                 {todo.text}
-              </span>
-              <button onClick={() => deleteTask(todo.id)}>削除</button>
+              </span> */}
+
+              <input
+                type='text'
+                value={todo.text}
+                onChange={(e) => changeTask(todo.id, e.target.value)}
+              />
+              <button class='delete-button' onClick={() => deleteTask(todo.id)}>削除</button>
+              <button class='complate-button' onClick={() => changeStatus(todo.id)}>完了</button>
             </li>
         ))}
       </ul>
@@ -92,7 +105,8 @@ function App() {
               <span onClick={() => changeStatus(todo.id)} style={{ cursor: 'pointer' }}>
                 {todo.text}
               </span>
-              <button onClick={() => deleteTask(todo.id)}>削除</button>
+              <button class='delete-button' onClick={() => deleteTask(todo.id)}>削除</button>
+              <button class='complate-button' onClick={() => changeStatus(todo.id)}>未完了に戻す</button>
             </li>
         ))}
       </ul>

@@ -79,12 +79,16 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+#root {
+  width: 1080px;
+}
+
 /* ==========================================================================
    アプリ全体のカード
    ========================================================================== */
 .App {
   width: 100%;
-  max-width: 520px;
+  max-width: 1080px;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
@@ -186,7 +190,8 @@ body {
   font-size: 0.95rem;
 }
 
-.App ul li span {
+.App ul li input, .App ul li span {
+  flex: 1;
   padding: 12px 14px;
   background: var(--color-surface-muted);
   border: 1px solid var(--color-border);
@@ -196,7 +201,7 @@ body {
     border-color var(--transition-fast);
 }
 
-.App ul li span:hover {
+.App ul li input:hover {
   transform: translateY(-1px);
   box-shadow: var(--shadow-sm);
   border-color: var(--color-primary);
