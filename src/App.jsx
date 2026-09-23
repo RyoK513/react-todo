@@ -26,8 +26,15 @@ function App() {
   }
 
   // タスク状態切替用関数
-  const changeStatus = (e) => {
-    console.log(e);
+  const changeStatus = (id) => {
+
+    setTodos(prevTodos => 
+      prevTodos.map(todo => 
+        todo.id === id
+        ? { ...todo, completed: !todo.completed }
+        : todo
+      )
+    );
   }
 
   // このreturn()の中に画面に表示したい内容を書いていく

@@ -129,4 +129,24 @@ inputが空なら処理の前にリターン
 
 4. タスクの完了状態を切り替える
 切り替え用の関数を作成
-→タスククリック時に現在の状態と逆の状態に切り替える
+→タスククリック時に呼び出し。現在の状態と逆の状態に切り替える
+
+変更処理詳細
+*非推奨*
+- 破壊的変更：単純にオブジェクトの値を書き換える→画面が再描画されない原因になる
+```
+// 対象タスクを取得
+const tergetTask = todos.find(todo => todo.id === id);
+
+// タスクのステータスを変更
+if (tergetTask.completed) {
+    tergetTask.completed = false
+} else {
+    tergetTask.completed = true
+}
+```
+*推奨*
+- 非破壊的変更：map() メソッドを使い、新しい配列を作成して上書き
+メモ：targetTask.completed = !targetTask.completed;のように記載できるらしい
+
+でタスクの完了状態をクリックで切り替えれるようになった
